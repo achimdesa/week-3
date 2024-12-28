@@ -5,7 +5,7 @@ from sklearn.preprocessing import OneHotEncoder
 def load_data(file_path):
     """Function to load data from a CSV file."""
     try:
-        df = pd.read_csv(file_path, delimiter='|')  # Ensure delimiter matches the data format
+        df = pd.read_csv(file_path, delimiter='|', low_memory=False)  
         return df
     except Exception as e:
         print(f"Error loading data: {e}")
