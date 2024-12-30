@@ -51,20 +51,23 @@ The goal of Task 1 is to:
 
 ## Steps in Task 1
 
-### 1. Data Loading
+1. Data Loading
 
-We start by loading the dataset into a Pandas DataFrame for analysis. The dataset was provided in a `.csv` file format.
+We start by loading the dataset into a Pandas DataFrame for analysis. The dataset was provided in a `.txt` file format.
 
 import pandas as pd
 
 Load the dataset
-df = pd.read_csv("data/MachineLearningRating_v3.txt", delimiter="|") 
-2. Data Summarization We use descriptive statistics to get an initial understanding of the dataset, including numerical features like TotalPremium, TotalClaims, and categorical variables such as Citizenship, LegalType, and VehicleType.
+df = pd.read_csv("data/MachineLearningRating_v3.txt", delimiter="|", low_memory=False) 
+2. Data Summarization: We use descriptive statistics to get an initial understanding of the dataset, including numerical features like TotalPremium, TotalClaims, and categorical variables such as Citizenship, LegalType, and VehicleType.
 
 Data summary
 print(df.describe(include='all')) 
 
-3. Data Quality Assessment Missing Values: We check for missing values to assess data quality. Data Types: Review the data types of each column and ensure proper formatting (e.g., categorical variables, date columns). Outliers: Detect outliers using box plots, particularly for TotalPremium and TotalClaims.
+3. Data Quality Assessment
+ Missing Values: We check for missing values to assess data quality. 
+ Data Types: Review the data types of each column and ensure proper formatting (e.g., categorical variables, date columns). 
+ Outliers: Detect outliers using box plots, particularly for TotalPremium and TotalClaims.
 
 Check for missing values
 print(df.isnull().sum())
@@ -101,11 +104,21 @@ df.boxplot(column='TotalPremium') plt.title('Box Plot for TotalPremium') plt.sho
 
 7. Data Visualization Three creative and meaningful visualizations were developed:
 
-Distribution of TotalPremium. Citizenship Distribution. Correlation heatmap for numerical features. Key Findings Missing Values: Certain fields, like Citizenship and PostalCode, have missing values, which need to be addressed. Outliers: Significant outliers were detected in TotalPremium and TotalClaims. Correlations: There is a positive correlation between TotalPremium and TotalClaims, indicating that higher premiums are associated with more claims. Data Distribution: The distribution of TotalPremium is heavily skewed, suggesting the need for transformation or handling in future tasks.
+Distribution of TotalPremium. 
+Citizenship Distribution. 
+Correlation heatmap for numerical features. 
 
-Task 2: Data Version Control (DVC) Setup Objective The objective of Task 2 is to set up Data Version Control (DVC) for tracking data versions, enabling reproducibility of analysis, and ensuring proper management of data and model files.
+## Key Findings 
+Missing Values: Certain fields, like Citizenship and PostalCode, have missing values, which need to be addressed. 
+Outliers: Significant outliers were detected in TotalPremium and TotalClaims. 
+Correlations: There is a positive correlation between TotalPremium and TotalClaims, indicating that higher premiums are associated with more claims. 
+Data Distribution: The distribution of TotalPremium is heavily skewed, suggesting the need for transformation or handling in future tasks.
 
-Steps in Task 2 DVC Installation:
+# Task 2: Data Version Control (DVC) Setup
+ ## Objective
+  The objective of Task 2 is to set up Data Version Control (DVC) for tracking data versions, enabling reproducibility of analysis, and ensuring proper management of data and model files.
+
+## Steps in Task 2 DVC Installation:
 
 Installed DVC using the following command:
 
@@ -145,18 +158,18 @@ Team members can pull the latest version of the dataset for analysis:
 
 dvc pull
 
-Task 3: A/B Hypothesis Testing
+# Task 3: A/B Hypothesis Testing
 
 Perform A/B hypothesis testing on different categorical features to evaluate risk and profit differences. Accept or reject null hypotheses based on statistical significance (p-value < 0.05). Provide insights to help AlphaCare Insurance Solutions make data-driven decisions regarding pricing and risk management. 
 
-#Hypotheses Tested
+## Hypotheses Tested
 
 1. Risk Differences Across Provinces (TotalClaims) Null Hypothesis (H₀): There is no risk difference between provinces. Alternative Hypothesis (H₁): There is a significant risk difference between provinces.
 2. Risk Differences Between Zip Codes (TotalClaims) Null Hypothesis (H₀): There is no risk difference between zip codes. Alternative Hypothesis (H₁): There is a significant risk difference between zip codes.
 3. Margin Differences Between Zip Codes (TotalPremium) Null Hypothesis (H₀): There is no significant margin (profit) difference between zip codes. Alternative Hypothesis (H₁): There is a significant margin (profit) difference between zip codes.
 4. Risk Differences Between Men and Women (TotalClaims) Null Hypothesis (H₀): There is no significant risk difference between men and women. Alternative Hypothesis (H₁): There is a significant risk difference between men and women. 
 
-##Steps in Task 3
+## Steps in Task 3
 1. Data Segmentation: For each hypothesis test, the dataset was segmented into two groups:
 Control Group: Group A without a certain feature (e.g., province or gender). 
 Test Group: Group B with a different feature (e.g., different province or gender). 
