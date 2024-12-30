@@ -5,3 +5,4 @@ scikit-learn
 dvc
 scipy
 numpy
+xgboost 
