@@ -147,45 +147,73 @@ dvc pull
 
 Task 3: A/B Hypothesis Testing
 
-Perform A/B hypothesis testing on different categorical features to evaluate risk and profit differences. Accept or reject null hypotheses based on statistical significance (p-value < 0.05). Provide insights to help AlphaCare Insurance Solutions make data-driven decisions regarding pricing and risk management. Hypotheses Tested
+Perform A/B hypothesis testing on different categorical features to evaluate risk and profit differences. Accept or reject null hypotheses based on statistical significance (p-value < 0.05). Provide insights to help AlphaCare Insurance Solutions make data-driven decisions regarding pricing and risk management. 
 
-Risk Differences Across Provinces (TotalClaims) Null Hypothesis (H₀): There is no risk difference between provinces. Alternative Hypothesis (H₁): There is a significant risk difference between provinces.
-Risk Differences Between Zip Codes (TotalClaims) Null Hypothesis (H₀): There is no risk difference between zip codes. Alternative Hypothesis (H₁): There is a significant risk difference between zip codes.
-Margin Differences Between Zip Codes (TotalPremium) Null Hypothesis (H₀): There is no significant margin (profit) difference between zip codes. Alternative Hypothesis (H₁): There is a significant margin (profit) difference between zip codes.
-Risk Differences Between Men and Women (TotalClaims) Null Hypothesis (H₀): There is no significant risk difference between men and women. Alternative Hypothesis (H₁): There is a significant risk difference between men and women. Steps in Task 3
-Data Segmentation For each hypothesis test, the dataset was segmented into two groups:
-Control Group: Group A without a certain feature (e.g., province or gender). Test Group: Group B with a different feature (e.g., different province or gender). 2. Statistical Testing We used appropriate statistical tests based on the data type and feature:
+#Hypotheses Tested
 
-T-test for continuous variables (TotalClaims, TotalPremium). Chi-square test for categorical variables (e.g., Gender vs. TotalClaims). 3. Analysis and Reporting After performing the statistical tests, the p-values were compared to the significance level (alpha = 0.05) to either accept or reject the null hypothesis.
+1. Risk Differences Across Provinces (TotalClaims) Null Hypothesis (H₀): There is no risk difference between provinces. Alternative Hypothesis (H₁): There is a significant risk difference between provinces.
+2. Risk Differences Between Zip Codes (TotalClaims) Null Hypothesis (H₀): There is no risk difference between zip codes. Alternative Hypothesis (H₁): There is a significant risk difference between zip codes.
+3. Margin Differences Between Zip Codes (TotalPremium) Null Hypothesis (H₀): There is no significant margin (profit) difference between zip codes. Alternative Hypothesis (H₁): There is a significant margin (profit) difference between zip codes.
+4. Risk Differences Between Men and Women (TotalClaims) Null Hypothesis (H₀): There is no significant risk difference between men and women. Alternative Hypothesis (H₁): There is a significant risk difference between men and women. 
 
-Results
+##Steps in Task 3
+1. Data Segmentation: For each hypothesis test, the dataset was segmented into two groups:
+Control Group: Group A without a certain feature (e.g., province or gender). 
+Test Group: Group B with a different feature (e.g., different province or gender). 
+2. Statistical Testing: We used appropriate statistical tests based on the data type and feature.
+T-test for continuous variables (TotalClaims, TotalPremium). 
+Chi-square test for categorical variables (e.g., Gender vs. TotalClaims). 
+3. Analysis and Reporting After performing the statistical tests, the p-values were compared to the significance level (alpha = 0.05) to either accept or reject the null hypothesis.
 
-Risk Differences Across Provinces (T-test) p-value: 0.0563 Conclusion: Fail to reject the null hypothesis (no significant result).
-Risk Differences Between Zip Codes (T-test) p-value: 0.5023 Conclusion: Fail to reject the null hypothesis (no significant result).
-Margin Differences Between Zip Codes (T-test) p-value: 1.48e-20 Conclusion: Reject the null hypothesis (significant result). This indicates significant margin differences between zip codes.
-Risk Differences Between Men and Women (Chi-square) p-value: 1.0 Conclusion: Fail to reject the null hypothesis (no significant result). Insights and Recommendations Location-Based Pricing: The significant margin differences between zip codes suggest that AlphaCare could adjust premiums based on location to optimize profitability.
-No Gender-Based Risk Adjustment: No significant risk difference was found between men and women. Thus, gender-based premium differentiation may not be necessary.
+##Results
 
-Focus on Zip Code Segmentation: Further exploration of zip code-related risk and margin differences could lead to more refined marketing and pricing strategies.
+*Risk Differences Across Provinces (T-test) p-value: 0.0563 Conclusion: Fail to reject the null hypothesis (no significant result).
+*Risk Differences Between Zip Codes (T-test) p-value: 0.5023 Conclusion: Fail to reject the null hypothesis (no significant result).
+*Margin Differences Between Zip Codes (T-test) p-value: 1.48e-20 Conclusion: Reject the null hypothesis (significant result). This indicates significant margin differences between zip codes.
+*Risk Differences Between Men and Women (Chi-square) p-value: 1.0 Conclusion: Fail to reject the null hypothesis (no significant result). 
 
-Task 4
+##Insights and Recommendations 
+*Location-Based Pricing: The significant margin differences between zip codes suggest that AlphaCare could adjust premiums based on location to optimize profitability.
+*No Gender-Based Risk Adjustment: No significant risk difference was found between men and women. Thus, gender-based premium differentiation may not be necessary.
+*Focus on Zip Code Segmentation: Further exploration of zip code-related risk and margin differences could lead to more refined marketing and pricing strategies.
 
-Steps in Task 4
+#Task 4- Modeling
 
-Data Preparation Handling Missing Data: Imputed missing numerical values with the median and categorical values with the most frequent category. Feature Engineering: Created new features where necessary, such as interaction terms or derived variables. Encoding Categorical Variables: Converted categorical variables to a numerical format using one-hot encoding for model compatibility.
-Modeling Techniques We trained four models on the processed dataset:
-Linear Regression Decision Tree Regressor Random Forest Regressor XGBoost Regressor 3. Model Evaluation Each model was evaluated using:
+##Steps in Task 4
 
-Mean Squared Error (MSE): Measures the average squared difference between actual and predicted values. Mean Absolute Error (MAE): Measures the average absolute difference between actual and predicted values. R-Squared: Indicates the proportion of variance explained by the model (closer to 1 is better). 4. Feature Importance Analysis SHAP (SHapley Additive exPlanations) was used to analyze feature importance for the Random Forest model, providing interpretability on how each feature contributed to the model’s predictions.
+1. Data Preparation 
+*Handling Missing Data: Imputed missing numerical values with the median and categorical values with the most frequent category. *Feature Engineering: Created new features where necessary, such as interaction terms or derived variables. 
+*Encoding Categorical Variables: Converted categorical variables to a numerical format using one-hot encoding for model compatibility.
+*Detecting outliers
 
-Results
+2. Modeling Techniques
+ We trained four models on the processed dataset:
+*Linear Regression 
+*Decision Tree Regressor 
+*Random Forest Regressor 
+*XGBoost Regressor 
 
-Linear Regression Mean Squared Error: 4.62e+29 Mean Absolute Error: 1.94e+12 R-Squared: -9.45e+22 (Poor performance, likely due to data scaling issues or multicollinearity).
-Decision Tree Mean Squared Error: 761,858 Mean Absolute Error: 14.05 R-Squared: 0.844 (Strong performance with good predictive power).
-Random Forest Mean Squared Error: 1,491,559 Mean Absolute Error: 26.67 R-Squared: 0.821 (Good performance, slightly lower than Decision Tree).
-XGBoost Mean Squared Error: 1,311,496 Mean Absolute Error: 24.88 R-Squared: 0.835 (Comparable to Decision Tree and Random Forest). Feature Importance SHAP analysis indicated that features such as VehicleType, SumInsured, and CalculatedPremiumPerTerm had the most significant impact on the prediction of TotalClaims. Insights and Recommendations Decision Tree and XGBoost Models: Both models performed well in predicting TotalClaims with strong R-Squared values above 0.8. Decision Tree provided the best performance, but XGBoost showed competitive results, suggesting that both can be used effectively.
-Linear Regression Limitations: Linear Regression underperformed, possibly due to multicollinearity and outliers in the dataset. Further data transformation and scaling are necessary to improve performance for linear models.
+3. Model Evaluation
+ Each model was evaluated using:
 
-Focus on Important Features: Based on SHAP analysis, AlphaCare should focus on key features such as VehicleType, SumInsured, and CalculatedPremiumPerTerm when assessing risk and determining premiums.
+*Mean Squared Error (MSE): Measures the average squared difference between actual and predicted values. 
+*Mean Absolute Error (MAE): Measures the average absolute difference between actual and predicted values. 
+*R-Squared: Indicates the proportion of variance explained by the model (closer to 1 is better). 
 
-Model Choice for Future Use: AlphaCare should prioritize using Decision Tree and XGBoost for predictive analytics, as these models show strong predictive power and interpretability.
+4. Feature Importance Analysis:
+ SHAP (SHapley Additive exPlanations) was used to analyze feature importance for the Random Forest model, providing interpretability on how each feature contributed to the model’s predictions.
+
+##Results
+
+*Linear Regression Mean Squared Error: 4.62e+29 Mean Absolute Error: 1.94e+12 R-Squared: -9.45e+22 (Poor performance, likely due to data scaling issues or multicollinearity).
+*Decision Tree Mean Squared Error: 761,858 Mean Absolute Error: 14.05 R-Squared: 0.844 (Strong performance with good predictive power).
+*Random Forest Mean Squared Error: 1,491,559 Mean Absolute Error: 26.67 R-Squared: 0.821 (Good performance, slightly lower than Decision Tree).
+*XGBoost Mean Squared Error: 1,311,496 Mean Absolute Error: 24.88 R-Squared: 0.835 (Comparable to Decision Tree and Random Forest). 
+
+Feature Importance SHAP analysis indicated that features such as VehicleType, SumInsured, and CalculatedPremiumPerTerm had the most significant impact on the prediction of TotalClaims. Insights and Recommendations Decision Tree and XGBoost Models: Both models performed well in predicting TotalClaims with strong R-Squared values above 0.8. Decision Tree provided the best performance, but XGBoost showed competitive results, suggesting that both can be used effectively.
+
+**Linear Regression Limitations: Linear Regression underperformed, possibly due to multicollinearity and outliers in the dataset. Further data transformation and scaling are necessary to improve performance for linear models.
+
+**Focus on Important Features: Based on SHAP analysis, AlphaCare should focus on key features such as VehicleType, SumInsured, and CalculatedPremiumPerTerm when assessing risk and determining premiums.
+
+**Model Choice for Future Use: AlphaCare should prioritize using Decision Tree and XGBoost for predictive analytics, as these models show strong predictive power and interpretability.
