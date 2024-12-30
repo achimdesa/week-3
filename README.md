@@ -59,14 +59,20 @@ import pandas as pd
 
 Load the dataset
 df = pd.read_csv("data/MachineLearningRating_v3.txt", delimiter="|", low_memory=False) 
-2. Data Summarization: We use descriptive statistics to get an initial understanding of the dataset, including numerical features like TotalPremium, TotalClaims, and categorical variables such as Citizenship, LegalType, and VehicleType.
+
+2. Data Summarization:
+
+ We use descriptive statistics to get an initial understanding of the dataset, including numerical features like TotalPremium, TotalClaims, and categorical variables such as Citizenship, LegalType, and VehicleType.
 
 Data summary
 print(df.describe(include='all')) 
 
 3. Data Quality Assessment
+
  Missing Values: We check for missing values to assess data quality. 
+
  Data Types: Review the data types of each column and ensure proper formatting (e.g., categorical variables, date columns). 
+ 
  Outliers: Detect outliers using box plots, particularly for TotalPremium and TotalClaims.
 
 Check for missing values
@@ -75,9 +81,9 @@ print(df.isnull().sum())
 Check data types
 print(df.dtypes) 
 
-4. Univariate Analysis We explore the distribution of individual variables using:
+4. Univariate Analysis:
 
-Histograms for numerical columns like SumInsured, TotalPremium, and TotalClaims. Bar charts for categorical variables like Citizenship, VehicleType, and LegalType.
+ We explore the distribution of individual variables using Histograms for numerical columns like SumInsured, TotalPremium, and TotalClaims. Bar charts for categorical variables like Citizenship, VehicleType, and LegalType.
 
 import matplotlib.pyplot as plt
 
@@ -87,7 +93,9 @@ df['TotalPremium'].hist(bins=50) plt.title('Distribution of TotalPremium') plt.x
 Plot bar chart for Citizenship
 df['Citizenship'].value_counts().plot(kind='bar') plt.title('Citizenship Distribution') plt.xlabel('Citizenship') plt.ylabel('Count') plt.show() 
 
-5. Bivariate and Multivariate Analysis We explore relationships between key variables, such as TotalPremium vs TotalClaims, using:
+5. Bivariate and Multivariate Analysis:
+
+ We explore relationships between key variables, such as TotalPremium vs TotalClaims, using:
 
 Scatter plots to visualize correlations. Correlation matrix to quantify the strength of relationships between numerical variables.
 
@@ -97,21 +105,31 @@ df.plot.scatter(x='TotalPremium', y='TotalClaims') plt.title('TotalPremium vs To
 Correlation matrix
 correlation_matrix = df.corr() print(correlation_matrix) 
 
-6. Outlier Detection We use box plots to detect outliers in numerical features, especially focusing on TotalPremium and TotalClaims.
+6. Outlier Detection:
+
+ We use box plots to detect outliers in numerical features, especially focusing on TotalPremium and TotalClaims.
 
 Box plot for TotalPremium
 df.boxplot(column='TotalPremium') plt.title('Box Plot for TotalPremium') plt.show() 
 
-7. Data Visualization Three creative and meaningful visualizations were developed:
+7. Data Visualization:
+
+ Three creative and meaningful visualizations were developed:
 
 Distribution of TotalPremium. 
+
 Citizenship Distribution. 
+
 Correlation heatmap for numerical features. 
 
 ## Key Findings 
+
 Missing Values: Certain fields, like Citizenship and PostalCode, have missing values, which need to be addressed. 
+
 Outliers: Significant outliers were detected in TotalPremium and TotalClaims. 
+
 Correlations: There is a positive correlation between TotalPremium and TotalClaims, indicating that higher premiums are associated with more claims. 
+
 Data Distribution: The distribution of TotalPremium is heavily skewed, suggesting the need for transformation or handling in future tasks.
 
 # Task 2: Data Version Control (DVC) Setup
